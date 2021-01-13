@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/chinmobi/modlib.svg?branch=main)](https://travis-ci.org/github/chinmobi/modlib)
+[![Go Report Card](https://goreportcard.com/badge/github.com/chinmobi/modlib)](https://goreportcard.com/report/github.com/chinmobi/modlib)
 
 # modlib
 
