@@ -1,6 +1,10 @@
-### NOTE:
+## modlib/evt
+
+Application event publish/listen/multicast utility for Golang.
 
 The implement of the event rounting mechanism is inspired by the awesome [httprouter](https://github.com/julienschmidt/httprouter).
+
+## License
 
 Most of the hard works (`path`, `tree`, `routergroup`) are forked and customed from [httprouter](https://github.com/julienschmidt/httprouter) and [Gin](https://github.com/gin-gonic/gin).
 
