@@ -1,0 +1,14 @@
+language: go
+
+env:
+  - GO111MODULE=on
+
+go:
+  - tip
+
+sudo: false
+
+script:
+  - go test -v github.com/chinmobi/modlib/evt/internal/bytesconv -coverprofile=evt_bytesconv.coverprofile
+  - go test -v github.com/chinmobi/modlib/evt/internal -coverprofile=evt_internal.coverprofile
+  - go test -v github.com/chinmobi/modlib/evt -coverprofile=evt_integrated.coverprofile
