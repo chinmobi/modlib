@@ -1,4 +1,4 @@
-## modlib/evt
+# modlib/evt
 
 Application event publish/listen/multicast utility for Golang.
 
