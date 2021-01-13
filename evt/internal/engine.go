@@ -15,6 +15,8 @@ import (
 type Engine struct {
 	RouterGroup
 
+	multicaster    EventMulticaster
+
 	pool           sync.Pool
 	eventPool      sync.Pool
 
@@ -23,6 +25,18 @@ type Engine struct {
 }
 
 var _ IRouter = &Engine{}
+
+func NewEngine(multicaster EventMulticaster) *Engine {
+	engine := newEngine()
+
+	engine.multicaster = multicaster
+
+	engine.eventPool.New = func() interface{} {
+		return engine.allocateEvent()
+	}
+
+	return engine
+}
 
 func newEngine() *Engine {
 	engine := &Engine{
