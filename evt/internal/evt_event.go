@@ -10,6 +10,8 @@ import (
 
 type EventPayload = event.Payload
 
+type EventListener = event.Listener
+
 // --- EventHandler ---
 
 type EventHandler = event.Handler

@@ -106,3 +106,23 @@ func (engine *Engine) PublishEvent(topic, routingPath, source string, payload Ev
 func (engine *Engine) ReplyEvent(event *Event, ack EventPayload) {
 	engine.PublishEvent(event.Topic, event.Source, event.RoutingPath, ack)
 }
+
+func (engine *Engine) BindEventListener(topic, bindingPath string, listener EventListener) {
+	handler := wrapListener(listener)
+
+	engine.RouterGroup.Register(topic, bindingPath, handler)
+}
+
+func wrapListener(listener EventListener) HandlerFunc {
+	return func(c *Context) {
+		listener.OnEvent(c, c.GetEventPayload())
+		recycleEvent(c)
+	}
+}
+
+func recycleEvent(c *Context) {
+	engine := c.getEngine()
+	if engine != nil {
+		engine.eventPool.Put(c.GetEvent().Reset())
+	}
+}
