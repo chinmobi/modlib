@@ -1,5 +1,5 @@
-github.com/chinmobi/modlib/evt v0.0.0-20210113145832-ad9d33420a44 h1:pGI4OiASYuP+zMmu8L3Yj68GxYjJrLtSjPn8jBPWOaI=
-github.com/chinmobi/modlib/evt v0.0.0-20210113145832-ad9d33420a44/go.mod h1:QbXnkDbzzFw/8B8MMEu5HsHjVRduj8pxzjz6iGAbRg0=
+github.com/chinmobi/modlib/evt v0.1.0 h1:I1tsih/1joHqPPeXNArVefjT7X4sruO+qv3jIXYG3LM=
+github.com/chinmobi/modlib/evt v0.1.0/go.mod h1:QbXnkDbzzFw/8B8MMEu5HsHjVRduj8pxzjz6iGAbRg0=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
