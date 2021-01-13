@@ -102,3 +102,7 @@ func (engine *Engine) PublishEvent(topic, routingPath, source string, payload Ev
 
 	engine.multicaster.MulticastEvent(event)
 }
+
+func (engine *Engine) ReplyEvent(event *Event, ack EventPayload) {
+	engine.PublishEvent(event.Topic, event.Source, event.RoutingPath, ack)
+}
