@@ -1,5 +1,9 @@
 language: go
 
+branches:
+  only:
+    - main
+
 env:
   - GO111MODULE=on
 
