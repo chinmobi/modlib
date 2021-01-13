@@ -93,3 +93,12 @@ func (engine *Engine) HandleEvent(event *Event) {
 
 	engine.pool.Put(c)
 }
+
+func (engine *Engine) PublishEvent(topic, routingPath, source string, payload EventPayload) {
+	event := engine.eventPool.Get().(*Event)
+
+	event.Init(topic, routingPath, source, payload)
+	event.Handler = engine
+
+	engine.multicaster.MulticastEvent(event)
+}
