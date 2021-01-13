@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/chinmobi/modlib.svg?branch=main)](https://travis-ci.org/github/chinmobi/modlib)
+
 # modlib
 
 The parent project manages submodules used as common module libraries in Go.
