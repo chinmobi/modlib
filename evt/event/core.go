@@ -13,13 +13,13 @@ type Publisher interface {
 type Envelope interface {
 	Topic() string
 
+	GetParam(name string) string
+
 	RoutingPath() string
 
 	Source() string
 
-	GetParam(name string) string
-
-	Reply(ack Payload)
+	Reply(topic string, ack Payload)
 }
 
 type Listener interface {

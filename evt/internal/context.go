@@ -86,6 +86,10 @@ func (c *Context) Topic() string {
 	return c.event.Topic
 }
 
+func (c *Context) GetParam(name string) string {
+	return c.Param(name)
+}
+
 func (c *Context) RoutingPath() string {
 	return c.event.RoutingPath
 }
@@ -94,8 +98,11 @@ func (c *Context) Source() string {
 	return c.event.Source
 }
 
-func (c *Context) GetParam(name string) string {
-	return c.Param(name)
+func (c *Context) Reply(topic string, ack EventPayload) {
+	engine := c.getEngine()
+	if engine != nil {
+		engine.ReplyEvent(c.event, topic, ack)
+	}
 }
 
 func (c *Context) getEngine() *Engine {
@@ -109,11 +116,4 @@ func (c *Context) getEngine() *Engine {
 	}
 
 	return engine
-}
-
-func (c *Context) Reply(ack EventPayload) {
-	engine := c.getEngine()
-	if engine != nil {
-		engine.ReplyEvent(c.event, ack)
-	}
 }
