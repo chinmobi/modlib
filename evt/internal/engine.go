@@ -83,3 +83,13 @@ func (engine *Engine) addRoute(topic, path string, handlers HandlersChain) {
 		engine.maxParams = paramsCount
 	}
 }
+
+// --- Event handle, publish, ... ---
+
+func (engine *Engine) HandleEvent(event *Event) {
+	c := engine.pool.Get().(*Context)
+
+	engine.trees.handle(c, event)
+
+	engine.pool.Put(c)
+}
