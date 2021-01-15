@@ -1,4 +1,4 @@
-// Copyright 2019 Andy Pan. All rights reserved.
+// Copyright 2018 Andy Pan. All rights reserved.
 // Use of this source code is governed by a MIT style license that can be found
 // at https://github.com/panjf2000/ants/blob/master/LICENSE
 
