@@ -21,6 +21,7 @@ func (exec *antsExecutor) Shutdown() {
 	exec.pool.Release()
 }
 
+// Create an ExecutorService based on ants.Pool with the poolSize and options.
 func NewAntsExecutor(poolSize int, opts *ants.Options) (gr.ExecutorService, error) {
 	pool, err := ants.NewPool(poolSize, ants.WithOptions(opts))
 	if err != nil {
@@ -28,4 +29,15 @@ func NewAntsExecutor(poolSize int, opts *ants.Options) (gr.ExecutorService, erro
 	}
 
 	return &antsExecutor{pool: pool,}, nil
+}
+
+// Get the default ants options
+func DefaultAntsOptions() *ants.Options {
+	opts := &ants.Options{
+		ExpiryDuration: ants.DefaultCleanIntervalTime,
+		PreAlloc: true,
+		MaxBlockingTasks: 0,
+		Nonblocking: false,
+	}
+	return opts
 }
