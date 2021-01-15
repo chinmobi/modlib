@@ -102,7 +102,7 @@ func TestRestCodeCoverage(t *testing.T) {
 	options.ExpiryDuration = time.Duration(10) * time.Second
 	options.Nonblocking = true
 	options.PreAlloc = true
-	poolOpts, _ := NewPool(1, WithOptions(options))
+	poolOpts, _ := NewPool(1, WithOptions(&options))
 	t.Logf("Pool with options, capacity: %d", poolOpts.Cap())
 
 	p0, _ := NewPool(TestSize, WithLogger(log.New(os.Stderr, "", log.LstdFlags)))

@@ -46,9 +46,9 @@ type Options struct {
 }
 
 // WithOptions accepts the whole options config.
-func WithOptions(options Options) Option {
+func WithOptions(options *Options) Option {
 	return func(opts *Options) {
-		*opts = options
+		*opts = *options
 	}
 }
 
