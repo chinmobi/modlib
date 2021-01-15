@@ -36,22 +36,21 @@ func TestAntsExecutorUsage(t *testing.T) {
 
 	defer exec.Shutdown()
 
-	var errs error
-
 	var sum, count int32 = 0, 15
 
 	for i := 0; i < int(count); i++ {
 		wg.Add(1)
-		err := exec.Execute(demoRunnable{Func: func() {
+		err = exec.Execute(demoRunnable{Func: func() {
 			demoFunc(&sum)
 			wg.Done()
 		},})
 		if err != nil {
-			errs = err
+			wg.Done()
+			break
 		}
 	}
 	wg.Wait()
 
-	assert.NoError(t, errs)
+	assert.NoError(t, err)
 	assert.Equal(t, count, sum)
 }
