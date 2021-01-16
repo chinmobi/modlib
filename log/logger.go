@@ -87,16 +87,7 @@ func SetUpLogger(config *LoggerConfig) {
 	cores := []zapcore.Core{}
 
 	if config.File.Enabled {
-		hook := &lumberjack.Logger{
-			Filename:   config.File.Filename,
-			MaxSize:    config.File.MaxSize,
-			MaxBackups: config.File.MaxBackups,
-			MaxAge:     config.File.MaxAge,
-			Compress:   config.File.Compress,
-		}
-
-		fileLevel := ParseLevels(config.File.Level)
-		core := zapcore.NewCore(zapcore.NewJSONEncoder(cfg), zapcore.AddSync(hook), fileLevel)
+		core := createFileLoggerCore(&config.File, zapcore.NewJSONEncoder(cfg))
 		cores = append(cores, core)
 	}
 
@@ -114,4 +105,18 @@ func SetUpLogger(config *LoggerConfig) {
 
 		SLogger = logger.Sugar()
 	}
+}
+
+func createFileLoggerCore(config *FileLogger, enc zapcore.Encoder) zapcore.Core {
+	hook := &lumberjack.Logger{
+		Filename:   config.Filename,
+		MaxSize:    config.MaxSize,
+		MaxBackups: config.MaxBackups,
+		MaxAge:     config.MaxAge,
+		Compress:   config.Compress,
+	}
+
+	fileLevel := ParseLevels(config.Level)
+
+	return zapcore.NewCore(enc, zapcore.AddSync(hook), fileLevel)
 }
