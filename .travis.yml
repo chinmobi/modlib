@@ -20,5 +20,7 @@ script:
   - go test -v github.com/chinmobi/modlib/evt/internal/bytesconv -coverprofile=evt_bytesconv.coverprofile
   - go test -v github.com/chinmobi/modlib/evt/internal -coverprofile=evt_internal.coverprofile
   - go test -v github.com/chinmobi/modlib/evt -coverprofile=evt_integrated.coverprofile
+  - go test -v github.com/chinmobi/modlib/grpool/ants -coverprofile=grpool_ants.coverprofile
+  - go test -v github.com/chinmobi/modlib/grpool -coverprofile=grpool.coverprofile
   - gover
   - goveralls -race -coverprofile gover.coverprofile -service travis-ci
