@@ -107,7 +107,7 @@ func SetUpLogger(config *LoggerConfig) {
 	}
 }
 
-func createFileLoggerCore(config *FileLogger, enc zapcore.Encoder) zapcore.Core {
+func createFileLoggerCore(config *FileConfig, enc zapcore.Encoder) zapcore.Core {
 	hook := &lumberjack.Logger{
 		Filename:   config.Filename,
 		MaxSize:    config.MaxSize,
