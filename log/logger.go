@@ -95,13 +95,13 @@ func SetUpLogger(config *LoggerConfig) {
 			Compress:   config.File.Compress,
 		}
 
-		fileLevel := zapLevelOf(config.File.Level)
+		fileLevel := ParseLevels(config.File.Level)
 		core := zapcore.NewCore(zapcore.NewJSONEncoder(cfg), zapcore.AddSync(hook), fileLevel)
 		cores = append(cores, core)
 	}
 
 	if config.Console.Enabled {
-		consoleLevel := zapLevelOf(config.Console.Level)
+		consoleLevel := ParseLevels(config.Console.Level)
 		core := zapcore.NewCore(zapcore.NewConsoleEncoder(cfg), zapcore.Lock(os.Stdout), consoleLevel)
 		cores = append(cores, core)
 	}
@@ -113,24 +113,5 @@ func SetUpLogger(config *LoggerConfig) {
 		Logger = logger
 
 		SLogger = logger.Sugar()
-	}
-}
-
-func zapLevelOf(str string) zapcore.Level {
-	switch str {
-	case DEBUG_LEVEL:
-		return zapcore.DebugLevel
-	case INFO_LEVEL:
-		return zapcore.InfoLevel
-	case WARN_LEVEL:
-		return zapcore.WarnLevel
-	case ERROR_LEVEL:
-		return zapcore.ErrorLevel
-	case PANIC_LEVEL:
-		return zapcore.PanicLevel
-	case FATAL_LEVEL:
-		return zapcore.FatalLevel
-	default:
-		return zapcore.InfoLevel
 	}
 }
