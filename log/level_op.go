@@ -20,6 +20,16 @@ func (op equalOpLevel) Enabled(lvl zapcore.Level) bool {
 	return lvl == op.lvl
 }
 
+// --- NotOpLevel ---
+
+type notOpLevel struct {
+	lvl zapcore.Level
+}
+
+func (op notOpLevel) Enabled(lvl zapcore.Level) bool {
+	return lvl != op.lvl
+}
+
 // --- LessOpLevel ---
 
 type lessOpLevel struct {
@@ -74,6 +84,8 @@ func parseSingleLevel(str string) zapcore.LevelEnabler {
 		return lessOpLevel{lvl: zapLevelOf(str[1:]),}
 	case '=':
 		return equalOpLevel{lvl: zapLevelOf(str[1:]),}
+	case '!':
+		return notOpLevel{lvl: zapLevelOf(str[1:]),}
 	default:
 		return zapLevelOf(str)
 	}

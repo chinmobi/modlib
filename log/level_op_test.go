@@ -20,6 +20,14 @@ func TestEqualOpLevel(t *testing.T) {
 	assertFalse(t, level.Enabled(zapcore.WarnLevel), "WARN =INFO")
 }
 
+func TestNotOpLevel(t *testing.T) {
+	level := log.ParseLevels("!INFO")
+
+	assertFalse(t, level.Enabled(zapcore.InfoLevel), "INFO !INFO")
+	assertTrue(t, level.Enabled(zapcore.DebugLevel), "DEBUG !INFO")
+	assertTrue(t, level.Enabled(zapcore.WarnLevel), "WARN !INFO")
+}
+
 func TestLessOpLevel(t *testing.T) {
 	level := log.ParseLevels("<INFO")
 
