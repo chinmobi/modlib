@@ -32,14 +32,6 @@ type basicListener struct {
 	Payload event.Payload
 }
 
-func (l *basicListener) Reset() {
-	l.Topic = ""
-	l.RoutingPath = ""
-	l.Source = ""
-	l.UserID = ""
-	l.Payload = nil
-}
-
 func (l *basicListener) OnEvent(envelope event.Envelope, payload event.Payload) {
 	l.Topic = envelope.Topic()
 	l.RoutingPath = envelope.RoutingPath()
