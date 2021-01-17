@@ -17,6 +17,7 @@ before_install:
   - go get github.com/mattn/goveralls
 
 script:
+  - go test -v github.com/chinmobi/modlib/log -coverprofile=log.coverprofile
   - go test -v github.com/chinmobi/modlib/evt/internal/bytesconv -coverprofile=evt_bytesconv.coverprofile
   - go test -v github.com/chinmobi/modlib/evt/internal -coverprofile=evt_internal.coverprofile
   - go test -v github.com/chinmobi/modlib/evt -coverprofile=evt_integrated.coverprofile
