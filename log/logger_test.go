@@ -18,7 +18,16 @@ func setUp(t *testing.T) {
 	tempDir, err := ioutil.TempDir("", "*-logs")
 	if err == nil {
 		config.File.Enabled = true
-		config.File.Filename = filepath.Join(tempDir, "test.log")
+		config.File.Filename = filepath.Join(tempDir, "info.log")
+		config.File.Level = "<WARN"
+
+		warnFilename := filepath.Join(tempDir, "warn.log")
+		warnFileCfg := log.NewFileConfig("=WARN", warnFilename)
+		config.AppendFileConfig(warnFileCfg)
+
+		errFilename := filepath.Join(tempDir, "error.log")
+		errFileCfg := log.NewFileConfig("ERROR", errFilename)
+		config.AppendFileConfig(errFileCfg)
 	} else {
 		t.Logf("%+v", err)
 	}
