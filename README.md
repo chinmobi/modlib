@@ -10,6 +10,7 @@ The parent project manages submodules used as common module libraries in Go.
 
 * `evt` - Application event publish/listen/multicast utility for Golang.
 * `grpool` - A high-performance and low-cost goroutine pool (forked and customed from Ants) utility for Golang.
+* `log` - A fast, leveled, configurable logging (based on [zap](https://pkg.go.dev/go.uber.org/zap)) in Go.
 
 ## Authors
 
